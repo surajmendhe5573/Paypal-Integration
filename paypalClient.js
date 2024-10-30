@@ -1,16 +1,16 @@
-// paypalClient.js
 const checkoutNodeJssdk = require('@paypal/checkout-server-sdk');
+require('dotenv').config(); // Load environment variables from .env file
 
 function environment() {
-  let clientId = "AZYYxazJc8e7bJJi6R-jGn9654xw0zYutug3iUDZIzTKWmFEmcnkScFLW_abJari8extxdMWuOjJlS6i";
-  let clientSecret = "EKeNzB-mE2aSSyuQQpzcSVhR4RMdTUNetYyAeqPS5CgHXpXZ-UfQPXHx48AnuPtqRaqE-qPkcbeIPdcz";
-  
-  return new checkoutNodeJssdk.core.SandboxEnvironment(clientId, clientSecret);
-  // Use checkoutNodeJssdk.core.LiveEnvironment for production
+    let clientId = process.env.PAYPAL_CLIENT_ID; // Use environment variable
+    let clientSecret = process.env.PAYPAL_CLIENT_SECRET; // Use environment variable
+
+    return new checkoutNodeJssdk.core.SandboxEnvironment(clientId, clientSecret);
+    // Use checkoutNodeJssdk.core.LiveEnvironment for production
 }
 
 function client() {
-  return new checkoutNodeJssdk.core.PayPalHttpClient(environment());
+    return new checkoutNodeJssdk.core.PayPalHttpClient(environment());
 }
 
 module.exports = { client };

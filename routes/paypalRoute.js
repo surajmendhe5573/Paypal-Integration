@@ -12,7 +12,7 @@ router.post('/create-payment', async (req, res) => {
     purchase_units: [{
       amount: {
         currency_code: 'USD',
-        value: '300.00', // Set your amount here
+        value: '600.00', // Set your amount here
       }
     }],
     application_context: {
